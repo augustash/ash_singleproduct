@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Single Product Redirection
+ *
+ * Enables the store administrator the ability to turn on a feature that will
+ * re-direct end-user to a product view page when the category browsed only has
+ * a single product associated.
+ *
+ * @category    Ash
+ * @package     Ash_SingleProduct
+ * @copyright   Copyright (c) 2010 August Ash, Inc. (http://www.augustash.com)
+ */
+-->
+<config>
+    <modules>
+        <Ash_SingleProduct>
+             <version>1.0.0</version>
+        </Ash_SingleProduct>
+    </modules>
+
+    <global>
+        <models>
+            <ash_singleproduct>
+                <class>Ash_SingleProduct_Model</class>
+            </ash_singleproduct>
+        </models>
+        <helpers>
+            <ash_singleproduct>
+                <class>Ash_SingleProduct_Helper</class>
+            </ash_singleproduct>
+        </helpers>
+    </global>
+
+    <frontend>
+        <events>
+            <catalog_controller_category_init_after>
+                <observers>
+                    <ash_singleproduct_redirect>
+                        <type>singleton</type>
+                        <class>ash_singleproduct/observer</class>
+                        <method>initRedirect</method>
+                    </ash_singleproduct_redirect>
+                </observers>
+            </catalog_controller_category_init_after>
+        </events>
+    </frontend>
+</config>
